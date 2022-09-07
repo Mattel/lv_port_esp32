@@ -169,25 +169,6 @@ static void create_demo_application(void)
 {
     /* When using a monochrome display we only show "Hello World" centered on the
      * screen */
-#if defined CONFIG_LV_TFT_DISPLAY_MONOCHROME || \
-    defined CONFIG_LV_TFT_DISPLAY_CONTROLLER_ST7735S
-
-    /* use a pretty small demo for monochrome displays */
-    /* Get the current screen  */
-    lv_obj_t * scr = lv_disp_get_scr_act(NULL);
-
-    /*Create a Label on the currently active screen*/
-    lv_obj_t * label1 =  lv_label_create(scr, NULL);
-
-    /*Modify the Label's text*/
-    lv_label_set_text(label1, "Hello\nworld");
-
-    /* Align the Label to the center
-     * NULL means align on parent (which is the screen now)
-     * 0, 0 at the end means an x, y offset after alignment*/
-    lv_obj_align(label1, NULL, LV_ALIGN_CENTER, 0, 0);
-#else
-    /* Otherwise we show the selected demo */
 
     #if defined CONFIG_LV_USE_DEMO_WIDGETS
         lv_demo_widgets();
@@ -200,7 +181,7 @@ static void create_demo_application(void)
     #else
         #error "No demo application selected."
     #endif
-#endif
+
 }
 
 static void lv_tick_task(void *arg) {
